@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>OTROS · JP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-elevated: #111827;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --text: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-soft: #1f2937;
+      --danger: #f97373;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 55%, #000 100%);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      padding: 16px;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 480px;
+      margin: auto;
+      background: linear-gradient(160deg, #020617 0, #020617 50%, #050816 100%);
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      padding: 18px 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    h1 {
+      font-size: 1.1rem;
+      margin: 0;
+      letter-spacing: 0.02em;
+    }
+
+    .subtitle {
+      margin: 0;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .badge {
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--text-muted);
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(8px);
+      white-space: nowrap;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* Secciones de la pantalla inicial */
+
+    .section {
+      background: radial-gradient(circle at top left, var(--accent-soft), transparent 60%),
+                  var(--bg-elevated);
+      border-radius: var(--radius-lg);
+      padding: 10px 10px 12px;
+      border: 1px solid var(--border-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+
+    .section-title span {
+      color: var(--accent);
+    }
+
+    .pill-button {
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+        transform 0.05s ease;
+    }
+
+    .pill-button span {
+      font-size: 0.9em;
+    }
+
+    .pill-button.is-active {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .pill-button:active {
+      transform: scale(0.97);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .toggle-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(31, 41, 55, 1);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      padding: 8px 4px;
+      text-align: center;
+      cursor: pointer;
+      opacity: 0.4; /* inactivo por defecto */
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+        opacity 0.15s ease, transform 0.05s ease;
+      user-select: none;
+    }
+
+    .toggle-btn.is-active {
+      opacity: 1;
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(15, 23, 42, 0.95);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.09);
+    }
+
+    .toggle-btn:active {
+      transform: scale(0.97);
+    }
+
+    .section-footer {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .counter {
+      opacity: 0.9;
+    }
+
+    .hint {
+      opacity: 0.7;
+      text-align: right;
+    }
+
+    .modes {
+      display: flex;
+      gap: 8px;
+    }
+
+    .mode-btn {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid rgba(31, 41, 55, 1);
+      background: linear-gradient(120deg, #0f172a, #020617);
+      color: var(--text);
+      font-size: 0.85rem;
+      padding: 9px 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+        opacity 0.15s ease, transform 0.05s ease;
+    }
+
+    .mode-btn span {
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+
+    .mode-btn.is-primary {
+      border-color: var(--accent);
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), #020617 55%);
+    }
+
+    .mode-btn.is-disabled {
+      opacity: 0.35;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .mode-btn:active:not(.is-disabled) {
+      transform: scale(0.97);
+    }
+
+    .status-bar {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .status-main {
+      display: inline-flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+    }
+
+    .toast {
+      margin-top: 4px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: left;
+      min-height: 1.2em;
+    }
+
+    /* Pantalla de estudio */
+
+    #study-screen {
+      display: none;
+    }
+
+    .study-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .home-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-muted);
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
+    }
+
+    .home-btn:active {
+      transform: scale(0.95);
+    }
+
+    .progress-block {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-left: 10px;
+    }
+
+    .progress-bar-outer {
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: #020617;
+      border: 1px solid rgba(30, 64, 175, 0.6);
+      overflow: hidden;
+    }
+
+    .progress-bar-inner {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #38bdf8, #22c55e);
+      transition: width 0.18s ease-out;
+    }
+
+    .progress-text {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    .study-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 4px 16px;
+    }
+
+    .study-card {
+      width: 100%;
+      background: var(--bg-elevated);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+      padding: 18px 12px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .study-main {
+      font-size: 1.3rem;
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    .study-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    .audio-btn {
+      margin-top: 10px;
+      align-self: center;
+      font-size: 0.8rem;
+    }
+
+    .study-footer {
+      margin-top: auto;
+      padding-top: 6px;
+    }
+
+    .primary-bottom-btn {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.32), #020617 60%);
+      color: var(--text);
+      padding: 11px 0;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.9);
+      transition: background 0.15s ease, transform 0.05s ease;
+    }
+
+    .primary-bottom-btn:active {
+      transform: scale(0.97);
+    }
+
+    .result-buttons {
+      display: none;
+      width: 100%;
+      gap: 8px;
+    }
+
+    .correct-btn,
+    .wrong-btn {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      padding: 10px 0;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+      transition: transform 0.05s ease, opacity 0.15s ease;
+    }
+
+    .correct-btn {
+      background: rgba(34, 197, 94, 0.12);
+      border-color: rgba(34, 197, 94, 0.7);
+      color: #bbf7d0;
+    }
+
+    .wrong-btn {
+      background: rgba(248, 113, 113, 0.12);
+      border-color: rgba(248, 113, 113, 0.7);
+      color: #fecaca;
+    }
+
+    .correct-btn:active,
+    .wrong-btn:active {
+      transform: scale(0.97);
+    }
+
+    .finished-text-main {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="title-block">
+        <h1>OTROS · JP</h1>
+        <p class="subtitle">Adjetivos y otras cosas.</p>
+      </div>
+      <div class="badge">0.1</div>
+    </header>
+
+    <!-- Pantalla inicial -->
+    <main id="setup-screen">
+      <!-- Apartado 1: Verbos -->
+      <section class="section" id="section-verbs">
+        <div class="section-header">
+          <div class="section-title">
+            <span>1.</span> Verbos
+          </div>
+          <button
+            id="btn-select-all-verbs"
+            class="pill-button"
+            type="button"
+          >
+            <span>Seleccionar todos</span>
+          </button>
+        </div>
+        <div class="grid" id="verbs-grid"></div>
+        <div class="section-footer" style="display: none;">
+          <div class="counter">
+            Seleccionados: <span id="verbs-count">0</span>
+          </div>
+          <div class="hint">
+            Toca para activar/desactivar. <br />“Seleccionar todos” alterna todo el grupo.
+          </div>
+        </div>
+      </section>
+
+      <!-- Apartado 2: Formas verbales -->
+      <section class="section" id="section-forms">
+        <div class="section-header">
+          <div class="section-title">
+            <span>2.</span> Formas verbales
+          </div>
+          <button
+            id="btn-select-all-forms"
+            class="pill-button"
+            type="button"
+          >
+            <span>Seleccionar todas</span>
+          </button>
+        </div>
+        <div class="grid" id="forms-grid"></div>
+        <div class="section-footer" style="display: none;">
+          <div class="counter">
+            Seleccionadas: <span id="forms-count">0</span>
+          </div>
+          <div class="hint">
+            Combina verbos + formas para definir tu lista de estudio.
+          </div>
+        </div>
+      </section>
+
+      <!-- Apartado 3: Modo de estudio -->
+      <section class="section" id="section-modes">
+        <div class="section-header">
+          <div class="section-title">
+            <span>3.</span> Modo de estudio
+          </div>
+        </div>
+        <div class="modes">
+          <button
+            class="mode-btn is-disabled"
+            id="mode-traducir"
+            type="button"
+            disabled
+          >
+            TRADUCIR
+          </button>
+          <button
+            class="mode-btn is-disabled"
+            id="mode-escuchar"
+            type="button"
+            disabled
+          >
+            ESCUCHAR
+          </button>
+          <button
+            class="mode-btn is-disabled"
+            id="mode-leer"
+            type="button"
+            disabled
+          >
+            LEER
+          </button>
+        </div>
+        <div class="status-bar" id="status-bar">
+          <div class="status-main">
+            <span class="status-dot"></span>
+            <span id="status-text">Selecciona al menos 1 verbo y 1 forma.</span>
+          </div>
+          <div>
+            <span id="status-counter"></span>
+          </div>
+        </div>
+        <div class="toast" id="toast"></div>
+      </section>
+    </main>
+
+    <!-- Pantalla de estudio -->
+    <main id="study-screen">
+      <div class="study-header">
+        <button id="btn-home" class="home-btn" type="button" title="Volver al inicio">
+          🏠
+        </button>
+        <div class="progress-block">
+          <div class="progress-bar-outer">
+            <div id="progress-bar" class="progress-bar-inner"></div>
+          </div>
+          <div id="progress-text" class="progress-text">0 / 0</div>
+        </div>
+      </div>
+
+      <div class="study-body">
+        <div class="study-card">
+          <div id="study-main" class="study-main"></div>
+          <div id="study-sub" class="study-sub"></div>
+          <button
+            id="btn-repeat-audio"
+            class="pill-button audio-btn"
+            type="button"
+            style="display: none;"
+          >
+            Repetir audio
+          </button>
+        </div>
+      </div>
+
+      <div class="study-footer">
+        <button
+          id="btn-reveal"
+          class="primary-bottom-btn"
+          type="button"
+        >
+          Revelar
+        </button>
+
+        <div id="result-buttons" class="result-buttons">
+          <button id="btn-correct" class="correct-btn" type="button">
+            ✓ He acertado
+          </button>
+          <button id="btn-wrong" class="wrong-btn" type="button">
+            ✕ No la sabía
+          </button>
+        </div>
+
+        <button
+          id="btn-finish-home"
+          class="primary-bottom-btn"
+          type="button"
+          style="display: none;"
+        >
+          Volver al inicio
+        </button>
+      </div>
+
+      <audio id="audio-player"></audio>
+    </main>
+  </div>
+
+  <script>
+
+    const frases = [
+{jp:"この本はいいです。", es:"Este libro es bueno.", verbo: "いい", forma: "いい", audio: "audios/001.mp3"},
+{jp:"その店はいいですよ。", es:"Esa tienda está bien, ¿eh?", verbo: "いい", forma: "いい", audio: "audios/002.mp3"},
+{jp:"今日の天気はいいですね。", es:"El tiempo de hoy está bueno, ¿verdad?", verbo: "いい", forma: "いい", audio: "audios/003.mp3"},
+{jp:"このコーヒーはいいですか。", es:"¿Está bien este café?", verbo: "いい", forma: "いい", audio: "audios/004.mp3"},
+{jp:"このパソコンはよくないです。", es:"Este ordenador no es bueno.", verbo: "いい", forma: "よくない", audio: "audios/005.mp3"},
+{jp:"その映画はよくないですよ。", es:"Esa película no es buena, ¿eh?", verbo: "いい", forma: "よくない", audio: "audios/006.mp3"},
+{jp:"今日の気分(きぶん)はよくないです。", es:"Hoy no me siento bien.", verbo: "いい", forma: "よくない", audio: "audios/007.mp3"},
+{jp:"この部屋はよくないですか。", es:"¿Esta habitación no está bien?", verbo: "いい", forma: "よくない", audio: "audios/008.mp3"},
+{jp:"昨日のテストはよかったです。", es:"El examen de ayer fue bien.", verbo: "いい", forma: "よかった", audio: "audios/009.mp3"},
+{jp:"そのレストランはよかったですよ。", es:"Ese restaurante estuvo muy bien.", verbo: "いい", forma: "よかった", audio: "audios/010.mp3"},
+{jp:"昨日のパーティーはよかったですね。", es:"La fiesta de ayer estuvo bien, ¿verdad?", verbo: "いい", forma: "よかった", audio: "audios/011.mp3"},
+{jp:"昨日のテストはよかったですか。", es:"¿El examen de ayer fue bien?", verbo: "いい", forma: "よかった", audio: "audios/012.mp3"},
+{jp:"あの映画はよくなかったです。", es:"Aquella película no estuvo bien.", verbo: "いい", forma: "よくなかった", audio: "audios/013.mp3"},
+{jp:"きのうの天気はよくなかったです。", es:"El tiempo de ayer no estuvo bien.", verbo: "いい", forma: "よくなかった", audio: "audios/014.mp3"},
+{jp:"あのレストランはよくなかったですよ。", es:"Aquel restaurante no fue bueno.", verbo: "いい", forma: "よくなかった", audio: "audios/015.mp3"},
+{jp:"きのうのテストはよくなかったですか。", es:"¿El examen de ayer no fue bien?", verbo: "いい", forma: "よくなかった", audio: "audios/016.mp3"},
+{jp:"東京から来ました。", es:"Vengo de Tokio.", verbo: "から", forma: "から", audio: "audios/017.mp3"},
+{jp:"家から学校まで15分です。", es:"Desde mi casa hasta la escuela son 15 minutos.", verbo: "から", forma: "から", audio: "audios/018.mp3"},
+{jp:"明日からテストです。", es:"Desde mañana hay examen.", verbo: "から", forma: "から", audio: "audios/019.mp3"},
+{jp:"九時から仕事です。", es:"Trabajo desde las nueve.", verbo: "から", forma: "から", audio: "audios/020.mp3"},
+{jp:"駅から歩きます。", es:"Camino desde la estación.", verbo: "から", forma: "から", audio: "audios/021.mp3"},
+{jp:"今日から夏休みです。", es:"Desde hoy son las vacaciones de verano.", verbo: "から", forma: "から", audio: "audios/022.mp3"},
+{jp:"このバスは空港から行きます。", es:"Este autobús va desde el aeropuerto.", verbo: "から", forma: "から", audio: "audios/023.mp3"},
+{jp:"三ページから五ページまで読んでください。", es:"Lee desde la página 3 hasta la 5.", verbo: "から", forma: "から", audio: "audios/024.mp3"},
+{jp:"雨ですから、行きません。", es:"Como llueve, no voy.", verbo: "から", forma: "から", audio: "audios/025.mp3"},
+{jp:"暑いですから、窓を開けます。", es:"Como hace calor, abro la ventana.", verbo: "から", forma: "から", audio: "audios/026.mp3"},
+{jp:"忙しいですから、今日はできません。", es:"Como estoy ocupado, hoy no puedo.", verbo: "から", forma: "から", audio: "audios/027.mp3"},
+{jp:"これは安いですから、買います。", es:"Como esto es barato, lo compro.", verbo: "から", forma: "から", audio: "audios/028.mp3"},
+{jp:"おいしいですから、もう一つ食べます。", es:"Como está rico, como otro más.", verbo: "から", forma: "から", audio: "audios/029.mp3"},
+{jp:"テストがありますから、勉強します。", es:"Como tengo examen, estudio.", verbo: "から", forma: "から", audio: "audios/030.mp3"},
+{jp:"家が近いですから、歩いて行きます。", es:"Como mi casa está cerca, voy andando.", verbo: "から", forma: "から", audio: "audios/031.mp3"},
+{jp:"うちからスーパーまで五分です。", es:"Desde mi casa al súper son cinco minutos.", verbo: "から", forma: "から", audio: "audios/032.mp3"},
+{jp:"木曜日に暇でしたから、大きい公園に行きました。", es:"Como tuve día libre el jueves, fui a un parque grande.", verbo: "から", forma: "Adj", audio: "audios/033.mp3"},
+{jp:"今⽇はちょっとさむいです。", es:"Hoy hace un poco de frío.", verbo: "Adj", forma: "Adj", audio: "audios/034.mp3"},
+{jp:"このげんかんはとてもきれいです。", es:"Esta entrada es muy bonita.", verbo: "Adj", forma: "Adj", audio: "audios/035.mp3"},
+{jp:"わたしのあたらしいだいがくはすごくおもしろいです。", es:"Mi nueva universidad es superinteresante.", verbo: "Adj", forma: "Adj", audio: "audios/036.mp3"},
+{jp:"ホセさんはイタリアにパスタをたべにいきました。", es:"José fue a comer pasta a Italia.", verbo: "Adj", forma: "Adj", audio: "audios/037.mp3"},
+{jp:"ホセさんはイタリアにパスタをたべにきました。", es:"José vino a comer pasta a Italia.", verbo: "Adj", forma: "Adj", audio: "audios/038.mp3"},
+{jp:"ホセさんはイタリアにパスタをたべにかえりました。", es:"José regresó a comer pasta a Italia.", verbo: "Adj", forma: "Adj", audio: "audios/039.mp3"},
+{jp:"マリアさんのうちにべんきょうにいきます。", es:"Voy a ir a casa de María a estudiar.", verbo: "Adj", forma: "Adj", audio: "audios/040.mp3"},
+{jp:"四月に私はスペインに旅行しました。", es:"En abril estuve de viaje en España.", verbo: "Adj", forma: "Adj", audio: "audios/041.mp3"},
+{jp:"毎日ミゲルさんはピアノを練習しません。", es:"Miguel no practica piano todos los días.", verbo: "Adj", forma: "Adj", audio: "audios/042.mp3"},
+{jp:"わたしは静かです。", es:"Soy callada.", verbo: "Adj", forma: "Adj", audio: "audios/043.mp3"},
+{jp:"わたしは静かな⼈です。", es:"Soy una persona callada.", verbo: "Adj", forma: "Adj", audio: "audios/044.mp3"},
+{jp:"⽉よう⽇はさむくなかったです。", es:"El lunes no fue frío.", verbo: "Adj", forma: "Adj", audio: "audios/045.mp3"},
+    ];
+
+    // A partir de la lista de frases extraemos los verbos y las formas únicas
+    const verbs = Array.from(new Set(frases.map((f) => f.verbo)));
+    const forms = Array.from(new Set(frases.map((f) => f.forma)));
+
+    // Sets con la selección actual (pantalla inicial)
+    const selectedVerbs = new Set();
+    const selectedForms = new Set();
+
+    // ==========
+    // Referencias DOM - pantalla inicial
+    // ==========
+
+    const setupScreen = document.getElementById("setup-screen");
+    const studyScreen = document.getElementById("study-screen");
+
+    const verbsGrid = document.getElementById("verbs-grid");
+    const formsGrid = document.getElementById("forms-grid");
+    const btnSelectAllVerbs = document.getElementById("btn-select-all-verbs");
+    const btnSelectAllForms = document.getElementById("btn-select-all-forms");
+    const verbsCountEl = document.getElementById("verbs-count");
+    const formsCountEl = document.getElementById("forms-count");
+
+    const modeEscuchar = document.getElementById("mode-escuchar");
+    const modeTraducir = document.getElementById("mode-traducir");
+    const modeLeer = document.getElementById("mode-leer");
+    const statusText = document.getElementById("status-text");
+    const statusCounter = document.getElementById("status-counter");
+    const toast = document.getElementById("toast");
+
+    // ==========
+    // Referencias DOM - pantalla de estudio
+    // ==========
+
+    const btnHome = document.getElementById("btn-home");
+    const progressBar = document.getElementById("progress-bar");
+    const progressText = document.getElementById("progress-text");
+
+    const studyMain = document.getElementById("study-main");
+    const studySub = document.getElementById("study-sub");
+    const btnRepeatAudio = document.getElementById("btn-repeat-audio");
+
+    const btnReveal = document.getElementById("btn-reveal");
+    const resultButtons = document.getElementById("result-buttons");
+    const btnCorrect = document.getElementById("btn-correct");
+    const btnWrong = document.getElementById("btn-wrong");
+    const btnFinishHome = document.getElementById("btn-finish-home");
+
+    const audioPlayer = document.getElementById("audio-player");
+
+    // ==========
+    // Estado de la sesión de estudio
+    // ==========
+
+    let studyMode = null; // "escuchar" | "traducir" | "leer"
+    let remainingPhrases = [];
+    let totalPhrases = 0;
+    let currentIndex = -1;
+    let currentPhrase = null;
+    let isRevealed = false;
+
+    // ==========
+    // Funciones auxiliares de UI (pantalla inicial)
+    // ==========
+
+    function createToggleButton(label, value, type) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.textContent = label;
+      btn.className = "toggle-btn";
+      btn.dataset.value = value;
+      btn.dataset.type = type; // "verb" o "form"
+      btn.addEventListener("click", () => {
+        handleToggleClick(btn);
+      });
+      return btn;
+    }
+
+    function renderGrids() {
+      // Verbos
+      verbsGrid.innerHTML = "";
+      verbs.forEach((verb) => {
+        const btn = createToggleButton(verb, verb, "verb");
+        verbsGrid.appendChild(btn);
+      });
+
+      // Formas
+      formsGrid.innerHTML = "";
+      forms.forEach((form) => {
+        const label = "…" + form;
+        const btn = createToggleButton(label, form, "form");
+        formsGrid.appendChild(btn);
+      });
+
+      updateCounts();
+      updateSelectAllStates();
+      updateModesState();
+    }
+
+    function handleToggleClick(btn) {
+      const value = btn.dataset.value;
+      const type = btn.dataset.type;
+
+      if (type === "verb") {
+        if (selectedVerbs.has(value)) {
+          selectedVerbs.delete(value);
+          btn.classList.remove("is-active");
+        } else {
+          selectedVerbs.add(value);
+          btn.classList.add("is-active");
+        }
+      } else if (type === "form") {
+        if (selectedForms.has(value)) {
+          selectedForms.delete(value);
+          btn.classList.remove("is-active");
+        } else {
+          selectedForms.add(value);
+          btn.classList.add("is-active");
+        }
+      }
+
+      updateCounts();
+      updateSelectAllStates();
+      updateModesState();
+    }
+
+    function updateCounts() {
+      verbsCountEl.textContent = selectedVerbs.size;
+      formsCountEl.textContent = selectedForms.size;
+
+      const totalSelectedPhrases = getActivePhrases().length;
+      if (totalSelectedPhrases > 0) {
+        statusCounter.textContent = `${totalSelectedPhrases} frases seleccionadas`;
+      } else {
+        statusCounter.textContent = "";
+      }
+    }
+
+    function updateSelectAllStates() {
+      // Verbos
+      const allVerbsSelected = selectedVerbs.size === verbs.length && verbs.length > 0;
+      if (allVerbsSelected) {
+        btnSelectAllVerbs.classList.add("is-active");
+      } else {
+        btnSelectAllVerbs.classList.remove("is-active");
+      }
+
+      // Formas
+      const allFormsSelected = selectedForms.size === forms.length && forms.length > 0;
+      if (allFormsSelected) {
+        btnSelectAllForms.classList.add("is-active");
+      } else {
+        btnSelectAllForms.classList.remove("is-active");
+      }
+    }
+
+    function updateModesState() {
+      const hasVerb = selectedVerbs.size > 0;
+      const hasForm = selectedForms.size > 0;
+      const canStudy = hasVerb && hasForm;
+
+      const modeButtons = [modeEscuchar, modeTraducir, modeLeer];
+
+      modeButtons.forEach((btn) => {
+        if (canStudy) {
+          btn.classList.remove("is-disabled");
+          btn.removeAttribute("disabled");
+        } else {
+          btn.classList.add("is-disabled");
+          btn.setAttribute("disabled", "disabled");
+        }
+      });
+
+      if (!canStudy) {
+        statusText.textContent = "Selecciona al menos 1 verbo y 1 forma.";
+        toast.textContent = "";
+      } else {
+        statusText.textContent =
+          "Listo. Elige un modo para empezar (escuchar, traducir o leer).";
+      }
+    }
+
+    function getActivePhrases() {
+      if (selectedVerbs.size === 0 || selectedForms.size === 0) return [];
+      return frases.filter(
+        (f) => selectedVerbs.has(f.verbo) && selectedForms.has(f.forma)
+      );
+    }
+
+    // ==========
+    // Botones "Seleccionar todos"
+    // ==========
+
+    btnSelectAllVerbs.addEventListener("click", () => {
+      const allSelected = selectedVerbs.size === verbs.length && verbs.length > 0;
+      selectedVerbs.clear();
+      if (!allSelected) {
+        verbs.forEach((v) => selectedVerbs.add(v));
+      }
+      Array.from(verbsGrid.children).forEach((btn) => {
+        const value = btn.dataset.value;
+        if (selectedVerbs.has(value)) {
+          btn.classList.add("is-active");
+        } else {
+          btn.classList.remove("is-active");
+        }
+      });
+      updateCounts();
+      updateSelectAllStates();
+      updateModesState();
+    });
+
+    btnSelectAllForms.addEventListener("click", () => {
+      const allSelected = selectedForms.size === forms.length && forms.length > 0;
+      selectedForms.clear();
+      if (!allSelected) {
+        forms.forEach((f) => selectedForms.add(f));
+      }
+      Array.from(formsGrid.children).forEach((btn) => {
+        const value = btn.dataset.value;
+        if (selectedForms.has(value)) {
+          btn.classList.add("is-active");
+        } else {
+          btn.classList.remove("is-active");
+        }
+      });
+      updateCounts();
+      updateSelectAllStates();
+      updateModesState();
+    });
+
+    // ==========
+    // Lógica de estudio (flashcards)
+    // ==========
+
+    function showSetupScreen() {
+      studyScreen.style.display = "none";
+      setupScreen.style.display = "flex";
+      // Parar audio si estuviera sonando
+      try {
+        audioPlayer.pause();
+      } catch (e) {}
+    }
+
+    function showStudyScreen() {
+      setupScreen.style.display = "none";
+      studyScreen.style.display = "flex";
+    }
+
+    function playAudioForCurrent() {
+      if (!currentPhrase || !currentPhrase.audio) return;
+      try {
+        audioPlayer.pause();
+      } catch (e) {}
+      audioPlayer.src = currentPhrase.audio;
+      audioPlayer.currentTime = 0;
+      audioPlayer.play().catch((err) => {
+        console.warn("No se pudo reproducir el audio:", err);
+      });
+    }
+
+    function updateProgress() {
+      const completed = totalPhrases - remainingPhrases.length;
+      const ratio = totalPhrases > 0 ? completed / totalPhrases : 0;
+      progressBar.style.width = (ratio * 100).toFixed(1) + "%";
+      progressText.textContent = `${completed} / ${totalPhrases}`;
+    }
+
+    function setBottomState(state) {
+      // "question" | "revealed" | "finished"
+      if (state === "question") {
+        btnReveal.style.display = "block";
+        resultButtons.style.display = "none";
+        btnFinishHome.style.display = "none";
+      } else if (state === "revealed") {
+        btnReveal.style.display = "none";
+        resultButtons.style.display = "flex";
+        btnFinishHome.style.display = "none";
+      } else if (state === "finished") {
+        btnReveal.style.display = "none";
+        resultButtons.style.display = "none";
+        btnFinishHome.style.display = "block";
+      }
+    }
+
+    function renderCardQuestion() {
+      if (!currentPhrase) return;
+
+      btnRepeatAudio.style.display = "none";
+
+      if (studyMode === "escuchar") {
+        studyMain.textContent = "Reproduciendo audio";
+        studySub.textContent = "";
+        btnRepeatAudio.style.display = "inline-flex";
+        // reproducción inicial
+        playAudioForCurrent();
+      } else if (studyMode === "traducir") {
+        studyMain.textContent = currentPhrase.es;
+        studySub.textContent = "";
+      } else if (studyMode === "leer") {
+        studyMain.textContent = currentPhrase.jp;
+        studySub.textContent = "";
+      }
+    }
+
+	function renderCardRevealed() {
+	  if (!currentPhrase) return;
+	  studyMain.textContent = currentPhrase.jp;
+	  studySub.textContent = currentPhrase.es;
+	  btnRepeatAudio.style.display = "inline-flex";
+
+	  // En modo ESCUCHAR no reproducimos automáticamente el audio al revelar
+	  if (studyMode !== "escuchar") {
+	    playAudioForCurrent();
+	  }
+	}
+    
+
+    function pickNextPhrase() {
+      if (remainingPhrases.length === 0) {
+        showFinishedState();
+        return;
+      }
+      const randomIndex = Math.floor(Math.random() * remainingPhrases.length);
+      currentIndex = randomIndex;
+      currentPhrase = remainingPhrases[randomIndex];
+      isRevealed = false;
+      setBottomState("question");
+      updateProgress();
+      renderCardQuestion();
+    }
+
+    function showFinishedState() {
+      currentPhrase = null;
+      isRevealed = true;
+      updateProgress();
+      studyMain.textContent = "Lista de estudio terminada.";
+      studyMain.classList.add("finished-text-main");
+      studySub.textContent =
+        "Puedes volver al inicio o cambiar la selección en la pantalla principal.";
+      btnRepeatAudio.style.display = "none";
+      setBottomState("finished");
+    }
+
+    function initStudySession(mode) {
+      studyMode = mode;
+      remainingPhrases = getActivePhrases().slice();
+      totalPhrases = remainingPhrases.length;
+
+      if (totalPhrases === 0) {
+        toast.textContent =
+          "No hay frases para esa combinación de verbos y formas (revisa la selección).";
+        toast.style.color = "var(--danger)";
+        return false;
+      }
+
+      toast.textContent = "";
+      studyMain.classList.remove("finished-text-main");
+
+      showStudyScreen();
+      pickNextPhrase();
+      return true;
+    }
+
+    function startStudy(mode) {
+      const ok = initStudySession(mode);
+      if (!ok) return;
+    }
+
+    function markAnswer(isCorrect) {
+      if (!currentPhrase) return;
+
+      if (isCorrect) {
+        // eliminamos la frase acertada de la lista
+        remainingPhrases.splice(currentIndex, 1);
+      }
+
+      if (remainingPhrases.length === 0) {
+        showFinishedState();
+      } else {
+        pickNextPhrase();
+      }
+    }
+
+    // ==========
+    // Eventos - modos de estudio
+    // ==========
+
+    modeEscuchar.addEventListener("click", () => startStudy("escuchar"));
+    modeTraducir.addEventListener("click", () => startStudy("traducir"));
+    modeLeer.addEventListener("click", () => startStudy("leer"));
+
+    // ==========
+    // Eventos - pantalla de estudio
+    // ==========
+
+    btnHome.addEventListener("click", () => {
+      showSetupScreen();
+    });
+
+    btnFinishHome.addEventListener("click", () => {
+      showSetupScreen();
+    });
+
+    btnRepeatAudio.addEventListener("click", () => {
+      playAudioForCurrent();
+    });
+
+    btnReveal.addEventListener("click", () => {
+      if (!currentPhrase) return;
+      isRevealed = true;
+      setBottomState("revealed");
+      renderCardRevealed();
+    });
+
+    btnCorrect.addEventListener("click", () => {
+      markAnswer(true);
+    });
+
+    btnWrong.addEventListener("click", () => {
+      markAnswer(false);
+    });
+	
+	// ---------- Atajos de teclado (solo en pantalla de estudio) ----------
+
+	document.addEventListener("keydown", (e) => {
+	  // Solo si estamos en la pantalla de estudio
+	  if (studyScreen.style.display === "none") return;
+
+	  // Evitar repetición al dejar pulsada una tecla
+	  if (e.repeat) return;
+
+	  // Barra espaciadora
+	  if (e.key === " " || e.code === "Space") {
+	    e.preventDefault(); // evita que haga scroll
+
+	    // Si no hay frase actual, no hacemos nada
+	    if (!currentPhrase) return;
+
+	    if (!isRevealed) {
+	      // Aún no revelada → hace clic en "Revelar"
+	      btnReveal.click();
+	    } else {
+	      // Ya revelada → hace clic en "He acertado"
+	      btnCorrect.click();
+	    }
+	  }
+
+	  // Tecla "m" o "M" → "No la sabía" (solo si está revelada)
+	  if (e.key === "m" || e.key === "M") {
+	    if (!currentPhrase) return;
+	    if (!isRevealed) return;
+	    btnWrong.click();
+	  }
+	});
+	
+
+    // ==========
+    // Inicializar
+    // ==========
+    renderGrids();
+  </script>
+</body>
+</html>
