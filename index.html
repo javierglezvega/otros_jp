@@ -451,7 +451,7 @@
         <h1>OTROS · JP</h1>
         <p class="subtitle">Adjetivos y otras cosas.</p>
       </div>
-      <div class="badge">0.1</div>
+      <div class="badge">0.2</div>
     </header>
 
     <!-- Pantalla inicial -->
@@ -661,6 +661,15 @@
 {jp:"わたしは静かです。", es:"Soy callada.", verbo: "Adj", forma: "Adj", audio: "audios/043.mp3"},
 {jp:"わたしは静かな⼈です。", es:"Soy una persona callada.", verbo: "Adj", forma: "Adj", audio: "audios/044.mp3"},
 {jp:"⽉よう⽇はさむくなかったです。", es:"El lunes no fue frío.", verbo: "Adj", forma: "Adj", audio: "audios/045.mp3"},
+{jp:"あさごはんをたべて、だいがくにいきました。", es:"Desayuné, luego fui a la universidad.", verbo: "Adj", forma: "Adj", audio: "audios/046.mp3"},
+{jp:"マリアさんはかみが長いです。", es:"María tiene el pelo largo.", verbo: "Adj", forma: "Adj", audio: "audios/047.mp3"},
+{jp:"マリアさんのかみは長いです。", es:"El pelo de María es largo.", verbo: "Adj", forma: "Adj", audio: "audios/048.mp3"},
+{jp:"マリアさんはせが高いです。", es:"María es alta.", verbo: "Adj", forma: "Adj", audio: "audios/049.mp3"},
+{jp:"マリアさんはせが低いです。", es:"María es baja.", verbo: "Adj", forma: "Adj", audio: "audios/050.mp3"},
+{jp:"マリアさんは頭がいいです。", es:"María es inteligente.", verbo: "Adj", forma: "Adj", audio: "audios/051.mp3"},
+{jp:"マリアさんの髪は長くないです。", es:"El pelo de María no es largo.", verbo: "Adj", forma: "Adj", audio: "audios/052.mp3"},
+{jp:"マリアさんの髪は長かったです。", es:"El pelo de María era largo.", verbo: "Adj", forma: "Adj", audio: "audios/053.mp3"},
+{jp:"マリアさんの髪は長くなかったです。", es:"El pelo de María no era largo.", verbo: "Adj", forma: "Adj", audio: "audios/054.mp3"},
     ];
 
     // A partir de la lista de frases extraemos los verbos y las formas únicas
@@ -751,7 +760,7 @@
       // Formas
       formsGrid.innerHTML = "";
       forms.forEach((form) => {
-        const label = "…" + form;
+        const label = "" + form;
         const btn = createToggleButton(label, form, "form");
         formsGrid.appendChild(btn);
       });
